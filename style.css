@@ -1,0 +1,41 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+  background-color: #eef0f4;
+}
+
+input {
+  color: #432000;
+  background-color: #dce1eb;
+  /* height: 50px; */
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  border-style: none;
+  margin: 10px 0;
+  font-size: 20px;
+  font-family: "Rubik", sans-serif;
+}
+button {
+  color: #fdfdfd;
+  background-color: #ac485a;
+  /* height: 50px; */
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  border-style: none;
+  font-size: 20px;
+  font-family: "Rubik", sans-serif;
+}
+img {
+  width: 150px;
+  margin: 0 auto;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 50px auto;
+}
