@@ -9,7 +9,6 @@ body {
 input {
   color: #432000;
   background-color: #dce1eb;
-  /* height: 50px; */
   padding: 15px;
   text-align: center;
   border-radius: 8px;
@@ -21,7 +20,6 @@ input {
 button {
   color: #fdfdfd;
   background-color: #ac485a;
-  /* height: 50px; */
   padding: 15px;
   text-align: center;
   border-radius: 8px;
