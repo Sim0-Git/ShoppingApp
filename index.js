@@ -63,6 +63,7 @@ onValue(completedItemDB, function (snapshot) {
     });
   } else {
     // completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in the list</h3>`;
+    return;
   }
 });
 
