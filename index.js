@@ -9,6 +9,8 @@ import {
   push,
   onValue,
   remove,
+  update,
+  set,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 //Setting up database
@@ -20,17 +22,21 @@ const appSettings = {
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const itemsInDB = ref(database, "itemsList");
+const completedItemDB = ref(database, "completedItemsList");
 
 //reference elements and variables
 const addItemBtn = document.getElementById("add-button");
 const inputField = document.getElementById("input-field");
 const itemUlList = document.getElementById("item-list");
+const completedItemUlList = document.getElementById("completed-item-list");
 let inputValue;
 
 //Fetching items from the database, runs every time there is edit to the database
 onValue(itemsInDB, function (snapshot) {
+  console.log("Enter on value in ItemsInDB");
   //Check if the item list is empty
   if (snapshot.exists()) {
+    console.log("Snapshot in ItemsInDB exists");
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
     let itemsArray = Object.entries(snapshot.val());
     clearItemUlList();
@@ -39,7 +45,24 @@ onValue(itemsInDB, function (snapshot) {
       console.log(`${currentItem} appended to the list`);
     });
   } else {
-    itemUlList.innerHTML = `<h3 id="no-item-msg">No items in the list</h3>`;
+    itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your list</h3>`;
+  }
+});
+
+onValue(completedItemDB, function (snapshot) {
+  console.log("Enter on value in completedItemDB");
+  //Check if the item list is empty
+  if (snapshot.exists()) {
+    console.log("Snapshot in completedItemDB exists");
+    // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
+    let itemsArray = Object.entries(snapshot.val());
+    clearCompletedItemUlList();
+    itemsArray.forEach((currentItem) => {
+      appendItemToCompletedUlList(currentItem);
+      console.log(`${currentItem} appended to the completed item list`);
+    });
+  } else {
+    // completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in the list</h3>`;
   }
 });
 
@@ -56,31 +79,98 @@ addItemBtn.addEventListener("click", function () {
 
 //Add items to Ul list
 function appendItemToUlList(item) {
+  console.log("Enter appendItemTodUlList and append item " + item);
   // itemUlList.innerHTML += `<li>${itemValue}</li>`;
   let newItem = document.createElement("li"); // Create li element
   let deleteBtn = document.createElement("button");
+  let checkBox = document.createElement("input");
+  let checkBoxContainer = document.createElement("div");
   let itemID = item[0]; //Get id from the item
   let itemValue = item[1]; // Get value from the item
 
   newItem.textContent = itemValue; //Assign to the li element the item value
-  newItem.draggable = { containment: "parent" };
-  deleteBtn.textContent = "Delete";
-  deleteBtn.id = "deleteItemBtn";
 
-  newItem.append(deleteBtn);
+  //Append checkbox and delete button to the div and the div to the li element
+  deleteBtn.id = "deleteItemBtn";
+  checkBox.type = "checkBox";
+  checkBox.id = "check-box-el";
+  checkBoxContainer.id = "container-check-box";
+  checkBoxContainer.append(checkBox);
+  checkBoxContainer.append(deleteBtn);
+
+  newItem.append(checkBoxContainer);
   itemUlList.append(newItem); // Append newItem li element to Ul list
+  console.log(newItem.textContent + " append to itemUlList");
+
+  //if checked move to the completed ul list items
+  checkBox.addEventListener("click", function () {
+    console.log("Enter checkbox listener in itemList");
+    let itemLocationInDB = ref(database, `itemsList/${itemID}`);
+    if (checkBox.checked) {
+      completedItemUlList.append(newItem);
+      console.log(newItem.textContent + " appended to completedItemUlList");
+      push(completedItemDB, itemValue);
+      console.log(newItem.textContent + " pushed in completedItemDB");
+      remove(itemLocationInDB);
+      console.log("remove " + newItem.textContent + " from itemsInDB");
+    }
+  });
 
   //Call deleteBtn function on clicks
   deleteBtn.addEventListener("click", function () {
     let itemLocationInDB = ref(database, `itemsList/${itemID}`);
     remove(itemLocationInDB); //remove exact item by ID
   });
-  // newItem.addEventListener("drag", function () {
-  //   let itemLocationInDB = ref(database, `itemsList/${itemID}`);
-  //   remove(itemLocationInDB); //remove exact item by ID
-  // });
 }
+function appendItemToCompletedUlList(item) {
+  console.log("Enter appendItemToCompletedUlList and append item " + item);
+  // itemUlList.innerHTML += `<li>${itemValue}</li>`;
+  let newItem = document.createElement("li"); // Create li element
+  let deleteBtn = document.createElement("button");
+  let checkBox = document.createElement("input");
+  let checkBoxContainer = document.createElement("div");
+  let itemID = item[0]; //Get id from the item
+  let itemValue = item[1]; // Get value from the item
 
+  newItem.id = "completed-item-li";
+  newItem.textContent = itemValue; //Assign to the li element the item value
+
+  //Append checkbox and delete button to the div and the div to the li element
+  deleteBtn.id = "deleteItemBtn";
+  checkBox.type = "checkBox";
+  checkBox.id = "check-box-el";
+  checkBox.checked = true;
+  checkBoxContainer.id = "container-check-box";
+  checkBoxContainer.append(checkBox);
+  checkBoxContainer.append(deleteBtn);
+
+  newItem.append(checkBoxContainer);
+  completedItemUlList.append(newItem); // Append newItem li element to Ul list
+  console.log(
+    newItem.textContent + " append to " + completedItemUlList.innerHTML
+  );
+
+  //if checked move to the completed ul list items
+  checkBox.addEventListener("click", function () {
+    console.log("Enter checkbox listener in completedItemList");
+    let itemLocationInDB = ref(database, `completedItemsList/${itemID}`);
+    if (!checkBox.checked) {
+      console.log(newItem.textContent + " item had ben unchecked");
+      itemUlList.append(newItem);
+      console.log(newItem.textContent + " appended to itemUlList");
+      remove(itemLocationInDB);
+      console.log("remove " + newItem.textContent + " from completedItemDB");
+      push(itemsInDB, itemValue);
+      console.log(newItem.textContent + " pushed in itemsInDB");
+    }
+  });
+
+  //Call deleteBtn function on clicks
+  deleteBtn.addEventListener("click", function () {
+    let itemLocationInDB = ref(database, `completedItemsList/${itemID}`);
+    remove(itemLocationInDB); //remove exact item by ID
+  });
+}
 //Clear input field
 function clearInputField() {
   inputField.value = "";
@@ -88,4 +178,9 @@ function clearInputField() {
 //Clear UL list element
 function clearItemUlList() {
   itemUlList.innerHTML = "";
+  console.log("CLEARING THE ITEM UL LIST");
+}
+function clearCompletedItemUlList() {
+  completedItemUlList.innerHTML = "";
+  console.log("CLEARING THE COMPLETED ITEM UL LIST");
 }
