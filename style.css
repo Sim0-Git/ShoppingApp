@@ -6,7 +6,24 @@ body {
   background-color: #faf1f0;
   user-select: none; /*deny the user to select any elements*/
 }
-
+#add-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+#list-section {
+  background-color: #fffffc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding-inline: 12px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+#completed-list-section {
+  background-color: #fffffc;
+  border-radius: 8px;
+  padding-inline: 12px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
 #input-field {
   color: #f08080;
   background-color: #d3dae7;
@@ -22,7 +39,7 @@ body {
 }
 button {
   color: #fdfdfd;
-  background-color: #f08080;
+  background-color: #ff9770;
   padding: 10px;
   text-align: center;
   border-radius: 8px;
@@ -52,35 +69,43 @@ ul {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 30px;
 }
 li {
   font-size: 20px;
   font-weight: bold;
   font-family: "Rubik", sans-serif;
   color: rgb(94, 93, 93);
-  background-color: #ffd0a7;
-  padding-block: 8px;
-  padding-inline: 10px;
-  list-style: circle;
-  border-radius: 6px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  /* flex-grow: 1; */
+  list-style: none;
+  width: 70%;
+}
+#li-div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #ffee93;
+  padding-block: 8px;
+  padding-inline: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
-#completed-item-li {
-  background-color: #cdeac0;
+#li-div-completed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a9def9;
+  padding-block: 8px;
+  padding-inline: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
+/* #completed-item-li {
+  background-color: #a9def9;
+} */
 #deleteItemBtn {
-  /* background-color: #f4978e; */
   background: url("/assets/delete.png");
   background-size: cover;
   box-shadow: none;
   border-radius: 0px;
-  /* padding: 5px 10px; */
-  /* font-size: 18px; */
 }
 #deleteItemBtn:hover {
   /* background-color: #debda1; */
@@ -90,8 +115,6 @@ li {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-#check-box-el {
 }
 
 #no-item-msg {

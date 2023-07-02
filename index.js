@@ -9,12 +9,9 @@ import {
   push,
   onValue,
   remove,
-  update,
-  set,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 //Setting up database
-
 //Link of the firebase database
 const appSettings = {
   databaseURL: "https://shopping-app-401eb-default-rtdb.firebaseio.com/",
@@ -85,23 +82,22 @@ function appendItemToUlList(item) {
   let newItem = document.createElement("li"); // Create li element
   let deleteBtn = document.createElement("button");
   let checkBox = document.createElement("input");
-  let checkBoxContainer = document.createElement("div");
+  let liDiv = document.createElement("div");
   let itemID = item[0]; //Get id from the item
   let itemValue = item[1]; // Get value from the item
 
   newItem.textContent = itemValue; //Assign to the li element the item value
 
-  //Append checkbox and delete button to the div and the div to the li element
+  // //Append checkbox and delete button to the div and the div to the li element
   deleteBtn.id = "deleteItemBtn";
   checkBox.type = "checkBox";
   checkBox.id = "check-box-el";
-  checkBoxContainer.id = "container-check-box";
-  checkBoxContainer.append(checkBox);
-  checkBoxContainer.append(deleteBtn);
+  liDiv.id = "li-div";
 
-  newItem.append(checkBoxContainer);
-  itemUlList.append(newItem); // Append newItem li element to Ul list
-  console.log(newItem.textContent + " append to itemUlList");
+  liDiv.append(checkBox);
+  liDiv.append(newItem);
+  liDiv.append(deleteBtn);
+  itemUlList.append(liDiv);
 
   //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
@@ -130,6 +126,7 @@ function appendItemToCompletedUlList(item) {
   let deleteBtn = document.createElement("button");
   let checkBox = document.createElement("input");
   let checkBoxContainer = document.createElement("div");
+  let liDiv = document.createElement("div");
   let itemID = item[0]; //Get id from the item
   let itemValue = item[1]; // Get value from the item
 
@@ -141,15 +138,12 @@ function appendItemToCompletedUlList(item) {
   checkBox.type = "checkBox";
   checkBox.id = "check-box-el";
   checkBox.checked = true;
-  checkBoxContainer.id = "container-check-box";
-  checkBoxContainer.append(checkBox);
-  checkBoxContainer.append(deleteBtn);
+  liDiv.id = "li-div-completed";
 
-  newItem.append(checkBoxContainer);
-  completedItemUlList.append(newItem); // Append newItem li element to Ul list
-  console.log(
-    newItem.textContent + " append to " + completedItemUlList.innerHTML
-  );
+  liDiv.append(checkBox);
+  liDiv.append(newItem);
+  liDiv.append(deleteBtn);
+  completedItemUlList.append(liDiv); // Append newItem li element to Ul list
 
   //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
