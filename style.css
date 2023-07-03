@@ -5,6 +5,15 @@ body {
   font-family: "Rubik", sans-serif;
   background-color: #faf1f0;
   user-select: none; /*deny the user to select any elements*/
+  height: 100%;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 0px auto;
+  height: 100%;
+  position: relative;
 }
 #add-section {
   display: flex;
@@ -25,19 +34,29 @@ body {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
 #input-field {
-  color: #f08080;
-  background-color: #d3dae7;
+  color: rgb(94, 93, 93);
+  background-color: #fdfdfd;
   padding: 10px;
   text-align: center;
   border-radius: 8px;
-  border-style: none;
+  border: 3px solid #ff9770;
+  outline: none;
   margin-top: 40px;
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
   font-family: "Rubik", sans-serif;
 }
-button {
+#button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-self: flex-end; */
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 2%;
+}
+#add-button {
   color: #fdfdfd;
   background-color: #ff9770;
   padding: 10px;
@@ -48,21 +67,17 @@ button {
   font-weight: bold;
   font-family: "Rubik", sans-serif;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+
+  /* width: 100%; */
 }
-button:hover {
-  background-color: #debda1;
-  cursor: pointer;
+#add-button:hover {
+  background-color: #fa7849;
 }
 img {
   width: 100px;
-  margin: 0 auto;
-}
-#container {
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
   margin: 50px auto;
 }
+
 ul {
   padding: 0;
   display: flex;
@@ -87,6 +102,7 @@ li {
   padding-inline: 10px;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  margin-block: 2px;
 }
 #li-div-completed {
   display: flex;
@@ -98,25 +114,33 @@ li {
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
-/* #completed-item-li {
-  background-color: #a9def9;
-} */
+
 #deleteItemBtn {
   background: url("/assets/delete.png");
   background-size: cover;
+  width: 25px;
+  height: 25px;
   box-shadow: none;
   border-radius: 0px;
+  border-style: none;
 }
 #deleteItemBtn:hover {
   /* background-color: #debda1; */
   cursor: pointer;
 }
-#container-check-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+#check-box-el {
+  appearance: none;
+  background-color: white;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
 }
 
+#check-box-el:checked {
+  background-color: #ff9770;
+}
 #no-item-msg {
   color: rgb(94, 93, 93);
   align-self: center;

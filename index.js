@@ -60,7 +60,8 @@ onValue(completedItemDB, function (snapshot) {
     });
   } else {
     // completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in the list</h3>`;
-    return;
+    completedItemUlList.innerHTML = "<span></span>";
+    // return;
   }
 });
 
@@ -125,7 +126,6 @@ function appendItemToCompletedUlList(item) {
   let newItem = document.createElement("li"); // Create li element
   let deleteBtn = document.createElement("button");
   let checkBox = document.createElement("input");
-  let checkBoxContainer = document.createElement("div");
   let liDiv = document.createElement("div");
   let itemID = item[0]; //Get id from the item
   let itemValue = item[1]; // Get value from the item
