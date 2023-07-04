@@ -180,12 +180,14 @@ function clearCompletedItemUlList() {
   console.log("CLEARING THE COMPLETED ITEM UL LIST");
 }
 
-$(".slider").slick({
-  rows: 2,
-  dots: true,
-  slidesToShow: 2,
-  slidesToScroll: 1,
-  infinite: true,
-  arrows: true,
-  speed: 300,
-});
+//Slick slider
+
+// $(".slider").slick({
+//   rows: 2,
+//   dots: true,
+//   slidesToShow: 2,
+//   slidesToScroll: 1,
+//   infinite: true,
+//   arrows: true,
+//   speed: 300,
+// });

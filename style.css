@@ -154,11 +154,12 @@ li {
   align-self: center;
 }
 
-/* slick wrapper */
-.slider {
-  /* width: 50%; */
-  background-color: #fa7849;
-  /* align-self: center; */
+/* slick-slide */
+
+/* .slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .slide {
   background-color: cadetblue;
@@ -166,8 +167,10 @@ li {
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid white;
+  border-radius: 10px;
+  margin: 5px 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 h2 {
   font-size: 40px;
-}
+} */
