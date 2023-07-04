@@ -4,7 +4,7 @@ body {
   padding: 0 4px;
   font-family: "Rubik", sans-serif;
   background-color: #faf1f0;
-  user-select: none; /*deny the user to select any elements*/
+  /* user-select: none; */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -13,30 +13,35 @@ body {
 #container {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
-  margin: 0px auto;
+  align-items: center;
+  width: 320px;
+  margin: 0 auto;
   margin-bottom: 30px;
   /* height: 90%; */
 }
 #add-section {
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
+  width: 90%;
 }
 #list-section {
   background-color: #fffffc;
   border-radius: 8px;
   margin-bottom: 20px;
   padding-inline: 12px;
-  margin-inline: 10px;
+  /* margin-inline: 10px; */
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 #completed-list-section {
   background-color: #fffffc;
   border-radius: 8px;
   padding-inline: 12px;
-  margin-inline: 10px;
+  /* margin-inline: 10px; */
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 #input-field {
   color: rgb(94, 93, 93);
@@ -48,9 +53,10 @@ body {
   outline: none;
   margin-top: 40px;
   margin-bottom: 10px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   font-family: "Rubik", sans-serif;
+  width: 100%;
 }
 
 #button-container {
@@ -72,8 +78,7 @@ body {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   position: fixed;
   bottom: 4%;
-  width: 280px;
-  /* max-width: 90%; */
+  min-width: 90%;
 }
 #add-button:hover {
   background-color: #fa7849;
@@ -120,8 +125,12 @@ li {
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
+#list-section {
+  max-width: 90%;
+}
 #completed-list-section {
   margin-bottom: 80px;
+  max-width: 90%;
 }
 #deleteItemBtn {
   background: url("/assets/delete.png");

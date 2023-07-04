@@ -113,6 +113,14 @@ function appendItemToUlList(item) {
       console.log("remove " + newItem.textContent + " from itemsInDB");
     }
   });
+  liDiv.addEventListener("touchstart", function (event) {
+    if (event.touches.length === 1) {
+      start = event.touches.item(0).clientX;
+    } else {
+      start = null;
+    }
+  });
+  // liDiv.addEventListener("touchend", moveTouch, false);
 
   //Call deleteBtn function on clicks
   deleteBtn.addEventListener("click", function () {
@@ -166,6 +174,7 @@ function appendItemToCompletedUlList(item) {
     remove(itemLocationInDB); //remove exact item by ID
   });
 }
+
 //Clear input field
 function clearInputField() {
   inputField.value = "";
