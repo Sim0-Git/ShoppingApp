@@ -60,6 +60,7 @@ img {
   font-family: "Rubik", sans-serif;
   width: 80%;
   position: fixed;
+  top: 20px;
 }
 
 #button-container {

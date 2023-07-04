@@ -180,7 +180,7 @@ function clearCompletedItemUlList() {
   completedItemUlList.innerHTML = "";
   console.log("CLEARING THE COMPLETED ITEM UL LIST");
 }
-
+$("#input-field").focus();
 //Slick slider
 
 // $(".slider").slick({
