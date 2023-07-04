@@ -1,5 +1,5 @@
 //
-import { add } from "./functions.js";
+// import { appendItemToUlList } from "./functions.js";
 
 //Database imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -113,14 +113,6 @@ function appendItemToUlList(item) {
       console.log("remove " + newItem.textContent + " from itemsInDB");
     }
   });
-  liDiv.addEventListener("touchstart", function (event) {
-    if (event.touches.length === 1) {
-      start = event.touches.item(0).clientX;
-    } else {
-      start = null;
-    }
-  });
-  // liDiv.addEventListener("touchend", moveTouch, false);
 
   //Call deleteBtn function on clicks
   deleteBtn.addEventListener("click", function () {
