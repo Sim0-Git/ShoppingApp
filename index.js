@@ -26,18 +26,21 @@ const addItemBtn = document.getElementById("add-button");
 const inputField = document.getElementById("input-field");
 const itemUlList = document.getElementById("item-list");
 const completedItemUlList = document.getElementById("completed-item-list");
-let inputValue;
+let itemArray = [];
+let completedItemArray = [];
 
 //Fetching items from the database, runs every time there is edit to the database
 onValue(itemsInDB, function (snapshot) {
-  console.log("Enter on value in ItemsInDB");
   //Check if the item list is empty
   if (snapshot.exists()) {
-    console.log("Snapshot in ItemsInDB exists");
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
     let itemsArray = Object.entries(snapshot.val());
+    console.log(itemsArray);
     clearItemUlList();
     itemsArray.forEach((currentItem) => {
+      console.log(currentItem[1]);
+      itemArray.push(currentItem[1]);
+
       appendItemToUlList(currentItem);
       console.log(`${currentItem} appended to the list`);
     });
@@ -47,14 +50,14 @@ onValue(itemsInDB, function (snapshot) {
 });
 
 onValue(completedItemDB, function (snapshot) {
-  console.log("Enter on value in completedItemDB");
   //Check if the item list is empty
   if (snapshot.exists()) {
-    console.log("Snapshot in completedItemDB exists");
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
     let itemsArray = Object.entries(snapshot.val());
     clearCompletedItemUlList();
     itemsArray.forEach((currentItem) => {
+      completedItemArray.push(currentItem[1]);
+
       appendItemToCompletedUlList(currentItem);
       console.log(`${currentItem} appended to the completed item list`);
     });
@@ -67,18 +70,34 @@ onValue(completedItemDB, function (snapshot) {
 
 //Add items to the Ul list and the database
 addItemBtn.addEventListener("click", function () {
-  inputValue = inputField.value;
-  if (inputValue == "") {
-    return;
-  } else {
+  // let inputValue = inputField.value;
+  let inputValue = trimAndLowerCase(inputField.value);
+
+  console.log(inputValue);
+  if (
+    !itemArray.includes(inputValue) &&
+    !completedItemArray.includes(inputValue) &&
+    !inputValue == ""
+  ) {
+    console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();
+  } else {
+    inputField.value = "Already in the list!";
+    setTimeout(function () {
+      inputField.value = "";
+    }, 1500);
   }
+  // if (inputValue == "") {
+  //   return;
+  // } else {
+  //   push(itemsInDB, inputValue);
+  //   clearInputField();
+  // }
 });
 
 //Add items to Ul list
 function appendItemToUlList(item) {
-  console.log("Enter appendItemTodUlList and append item " + item);
   // itemUlList.innerHTML += `<li>${itemValue}</li>`;
   let newItem = document.createElement("li"); // Create li element
   let deleteBtn = document.createElement("button");
@@ -174,21 +193,15 @@ function clearInputField() {
 //Clear UL list element
 function clearItemUlList() {
   itemUlList.innerHTML = "";
-  console.log("CLEARING THE ITEM UL LIST");
 }
 function clearCompletedItemUlList() {
   completedItemUlList.innerHTML = "";
   console.log("CLEARING THE COMPLETED ITEM UL LIST");
 }
 $("#input-field").focus();
-//Slick slider
 
-// $(".slider").slick({
-//   rows: 2,
-//   dots: true,
-//   slidesToShow: 2,
-//   slidesToScroll: 1,
-//   infinite: true,
-//   arrows: true,
-//   speed: 300,
-// });
+function trimAndLowerCase(input) {
+  input = input.trim();
+  input = input.toLowerCase();
+  return input;
+}
