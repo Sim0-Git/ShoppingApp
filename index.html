@@ -46,11 +46,45 @@
         />
       </div>
       <div id="list-section"><ul id="item-list"></ul></div>
-      <div id="completed-list-section"><ul id="completed-item-list"></ul></div>
+      <div id="completed-list-section">
+        <ul id="completed-item-list"></ul>
+      </div>
     </div>
     <div id="button-container">
       <button id="add-button">Add to Cart</button>
     </div>
+    <div class="modal" id="modal">
+      <p>Add item to the list</p>
+      <div class="modal-btn" id="modal-btn">
+        <form id="add-item-form">
+          <input
+            type="text"
+            id="modal-input-field"
+            name="itemName"
+            placeholder="Add new item"
+            maxlength="18"
+            required
+          />
+          <input
+            type="number"
+            id="modal-input-field"
+            name="quantityName"
+            placeholder="Quantity"
+            maxlength="18"
+            required
+          />
+          <div>
+            <button type="submit" class="btn" id="add-btn">Add</button>
+            <button class="btn" id="cancel-btn">Cancel</button>
+            <button class="btn" id="done-btn">Done</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="fixed-container" id="fixed-container">
+      <button class="fixed-btn" id="fixed-btn">+</button>
+    </div>
+
     <script src="index.js" type="module"></script>
     <script src="functions.js" type="module"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

@@ -23,9 +23,16 @@ const completedItemDB = ref(database, "completedItemsList");
 
 //reference elements and variables
 const addItemBtn = document.getElementById("add-button");
+const addItemDiv = document.getElementById("fixed-container");
+const addItemForm = document.getElementById("add-item-form");
+const addItemWithModalBtn = document.getElementById("fixed-btn");
+//Buttons inside modal
+const addBtn = document.getElementById("add-btn");
+const doneBtn = document.getElementById("done-btn");
 const inputField = document.getElementById("input-field");
 const itemUlList = document.getElementById("item-list");
 const completedItemUlList = document.getElementById("completed-item-list");
+const modalEl = document.getElementById("modal");
 let itemArray = [];
 let completedItemArray = [];
 
@@ -35,14 +42,10 @@ onValue(itemsInDB, function (snapshot) {
   if (snapshot.exists()) {
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
     let itemsArray = Object.entries(snapshot.val());
-    console.log(itemsArray);
     clearItemUlList();
     itemsArray.forEach((currentItem) => {
-      console.log(currentItem[1]);
       itemArray.push(currentItem[1]);
-
       appendItemToUlList(currentItem);
-      console.log(`${currentItem} appended to the list`);
     });
   } else {
     itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your list</h3>`;
@@ -57,9 +60,7 @@ onValue(completedItemDB, function (snapshot) {
     clearCompletedItemUlList();
     itemsArray.forEach((currentItem) => {
       completedItemArray.push(currentItem[1]);
-
       appendItemToCompletedUlList(currentItem);
-      console.log(`${currentItem} appended to the completed item list`);
     });
   } else {
     // completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in the list</h3>`;
@@ -88,12 +89,20 @@ addItemBtn.addEventListener("click", function () {
       inputField.value = "";
     }, 1500);
   }
-  // if (inputValue == "") {
-  //   return;
-  // } else {
-  //   push(itemsInDB, inputValue);
-  //   clearInputField();
-  // }
+});
+
+//Add items by opening a modal
+addItemForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+});
+addItemWithModalBtn.addEventListener("click", function () {
+  console.log("Modal open");
+  modalEl.style.display = "inline";
+  addItemDiv.style.display = "none";
+});
+doneBtn.addEventListener("click", function () {
+  modalEl.style.display = "none";
+  addItemDiv.style.display = "flex";
 });
 
 //Add items to Ul list
@@ -139,8 +148,8 @@ function appendItemToUlList(item) {
     remove(itemLocationInDB); //remove exact item by ID
   });
 }
+//Add items to completed Ul list
 function appendItemToCompletedUlList(item) {
-  console.log("Enter appendItemToCompletedUlList and append item " + item);
   // itemUlList.innerHTML += `<li>${itemValue}</li>`;
   let newItem = document.createElement("li"); // Create li element
   let deleteBtn = document.createElement("button");
@@ -196,7 +205,6 @@ function clearItemUlList() {
 }
 function clearCompletedItemUlList() {
   completedItemUlList.innerHTML = "";
-  console.log("CLEARING THE COMPLETED ITEM UL LIST");
 }
 $("#input-field").focus();
 

@@ -5,7 +5,7 @@ body {
   font-family: "Rubik", sans-serif;
   background-color: #faf1f0;
   user-select: none;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +15,23 @@ img {
   margin-inline: auto;
   margin-top: 30px;
 }
+.fixed-container {
+  width: 40px;
+  height: 40px;
+  box-shadow: 1px 1px 5px #999;
+  border-radius: 20%;
+  display: flex;
+  position: fixed;
+  bottom: 85px;
+  right: 15px;
+}
+.fixed-btn {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  border-style: none;
+  border-radius: 20%;
+}
 #container {
   display: flex;
   flex-direction: column;
@@ -23,6 +40,7 @@ img {
   margin: 0 auto;
   margin-bottom: 30px;
 }
+/* USER INPUT */
 #add-section {
   display: flex;
   flex-direction: column;
@@ -31,23 +49,8 @@ img {
   margin-bottom: 30px;
   width: 90%;
 }
-#list-section {
-  background-color: #fffffc;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  margin-top: 40px;
-  padding-inline: 12px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  width: 100%;
-}
-#completed-list-section {
-  background-color: #fffffc;
-  border-radius: 8px;
-  padding-inline: 12px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  width: 100%;
-}
-#input-field {
+#input-field,
+#modal-input-field {
   color: rgb(94, 93, 93);
   background-color: #fdfdfd;
   padding: 10px;
@@ -58,7 +61,7 @@ img {
   font-size: 20px;
   font-weight: bold;
   font-family: "Rubik", sans-serif;
-  width: 90%;
+  width: 80%;
   top: 20px;
 }
 
@@ -87,7 +90,23 @@ img {
 #add-button:hover {
   background-color: #fa7849;
 }
-
+/* ITEM LISTS */
+#list-section {
+  background-color: #fffffc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  padding-inline: 12px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+#completed-list-section {
+  background-color: #fffffc;
+  border-radius: 8px;
+  padding-inline: 12px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
 ul {
   padding: 0;
   display: flex;
@@ -143,7 +162,7 @@ li {
 #deleteItemBtn:hover {
   cursor: pointer;
 }
-
+/* CHECKBOX */
 #check-box-el {
   appearance: none;
   background-color: white;
@@ -159,4 +178,29 @@ li {
 #no-item-msg {
   color: rgb(94, 93, 93);
   align-self: center;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 90%;
+  width: 90%;
+  border-radius: 4px;
+  background-color: #bde0fe;
+  box-shadow: 0px 0px 6px 1px #666;
+  color: rgb(94, 93, 93);
+  font-size: 20px;
+  font-weight: bold;
+  display: none;
+}
+.modal p {
+  text-align: center;
+}
+.modal-btn {
+  text-align: center;
 }
