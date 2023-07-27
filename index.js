@@ -33,6 +33,8 @@ const openModalBtn = document.getElementById("open-modal-btn");
 const addBtn = document.getElementById("add-btn");
 const doneBtn = document.getElementById("done-btn");
 const modalEl = document.getElementById("modal");
+const inputFieldModal = document.getElementById("modal-input-field");
+const quantityFieldModal = document.getElementById("modal-quantity-field");
 //Arrays
 let itemArray = [];
 let completedItemArray = [];
@@ -71,25 +73,44 @@ onValue(completedItemDB, function (snapshot) {
 });
 
 //Add items to the Ul list and the database
-addItemBtn.addEventListener("click", function () {
-  // let inputValue = inputField.value;
-  let inputValue = trimAndLowerCase(inputField.value);
-
-  console.log(inputValue);
+// addItemBtn.addEventListener("click", function () {
+//   let inputValue = trimAndLowerCase(inputField.value);
+//   console.log(inputValue);
+//   console.log(itemArray);
+//   console.log(completedItemArray);
+//   if (
+//     !itemArray.includes(inputValue) &&
+//     !completedItemArray.includes(inputValue) &&
+//     !inputField.value == ""
+//   ) {
+//     console.log(`${inputValue} added`);
+//     push(itemsInDB, inputValue);
+//     clearInputField();
+//   } else {
+//     inputField.value = "Already in the list!";
+//     setTimeout(function () {
+//       inputField.value = "";
+//     }, 1500);
+//   }
+// });
+addBtn.addEventListener("click", function () {
+  let inputValue = trimAndLowerCase(inputFieldModal.value);
   if (
     !itemArray.includes(inputValue) &&
     !completedItemArray.includes(inputValue) &&
-    !inputValue == ""
+    !inputFieldModal.value == ""
   ) {
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();
   } else {
-    inputField.value = "Already in the list!";
+    inputFieldModal.value = "Already in the list!";
     setTimeout(function () {
-      inputField.value = "";
+      inputFieldModal.value = "";
+      // quantityFieldModal.value = "";
     }, 1500);
   }
+  inputModalChecks();
 });
 
 //Add items by opening a modal
@@ -97,19 +118,15 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
 });
 openModalBtn.addEventListener("click", function () {
-  console.log("Modal open");
   modalEl.style.display = "flex";
   addItemDiv.style.display = "none";
+  inputModalChecks();
 });
 doneBtn.addEventListener("click", function () {
   modalEl.style.display = "none";
   addItemDiv.style.display = "flex";
-});
-addBtn.addEventListener("click", function () {
-  modalEl.innerHTML += `<h2>item added</h2>`;
-  setTimeout(function () {
-    modalEl.innerHTML - `<h2>item added</h2>`;
-  }, 1000);
+  inputFieldModal.value = "";
+  // quantityFieldModal.value = "0";
 });
 
 //Add items to Ul list
@@ -205,6 +222,7 @@ function appendItemToCompletedUlList(item) {
 //Clear input field
 function clearInputField() {
   inputField.value = "";
+  inputFieldModal.value = "";
 }
 //Clear UL list element
 function clearItemUlList() {
@@ -213,10 +231,25 @@ function clearItemUlList() {
 function clearCompletedItemUlList() {
   completedItemUlList.innerHTML = "";
 }
-$("#input-field").focus();
-
 function trimAndLowerCase(input) {
   input = input.trim();
   input = input.toLowerCase();
   return input;
+}
+function inputModalChecks() {
+  //Modal input checks
+  if (!inputFieldModal.value) {
+    addBtn.style.backgroundColor = "#d2d2cf";
+    addBtn.disabled = true;
+  }
+  inputFieldModal.addEventListener("keydown", function () {
+    addBtn.style.backgroundColor = "#ff9770";
+    addBtn.disabled = false;
+  });
+  inputFieldModal.addEventListener("keyup", function () {
+    if (!inputFieldModal.value) {
+      addBtn.style.backgroundColor = "#d2d2cf";
+      addBtn.disabled = true;
+    }
+  });
 }

@@ -167,7 +167,7 @@ li {
 .open-modal-btn-container {
   width: 40px;
   height: 40px;
-  box-shadow: 1px 1px 5px #999;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 20%;
   display: flex;
   position: fixed;
@@ -180,6 +180,10 @@ li {
   margin: auto;
   border-style: none;
   border-radius: 20%;
+  background-color: #ff9770;
+  font-weight: 600;
+  font-size: larger;
+  color: whitesmoke;
 }
 .modal {
   position: fixed;
@@ -190,7 +194,7 @@ li {
   margin: auto;
   height: 95%;
   min-height: 250px;
-  width: 320px;
+  width: 300px;
   border-radius: 4px;
   background-color: #ffef9f;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
@@ -231,6 +235,10 @@ li {
   font-weight: 500;
   background-color: #ff9770;
   color: #fdfdfd;
+  width: 100px;
+}
+.add {
+  background-color: #d2d2cf;
 }
 .name {
   width: 60%;
