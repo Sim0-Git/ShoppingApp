@@ -30,7 +30,7 @@ img {
   flex-direction: column;
   align-items: center;
   margin-top: 25px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: 90%;
 }
 .input-field {
@@ -235,7 +235,7 @@ li {
   /* margin-top: 20px; */
   /* margin-inline: 20px; */
   font-size: 20px;
-  font-weight: 500;
+  font-weight: bold;
   background-color: #ff9770;
   color: #fdfdfd;
   width: 100px;
@@ -244,7 +244,7 @@ li {
   background-color: #d2d2cf;
 }
 .name {
-  width: 60%;
+  width: 80%;
   margin-bottom: 10px;
   border: 3px solid #ff9770;
 }

@@ -111,6 +111,7 @@ addBtn.addEventListener("click", function () {
     }, 1500);
   }
   inputModalChecks();
+  inputFieldModal.focus();
 });
 
 //Add items by opening a modal
@@ -120,6 +121,7 @@ form.addEventListener("submit", function (e) {
 openModalBtn.addEventListener("click", function () {
   modalEl.style.display = "flex";
   addItemDiv.style.display = "none";
+  inputFieldModal.focus();
   inputModalChecks();
 });
 doneBtn.addEventListener("click", function () {
