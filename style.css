@@ -171,8 +171,8 @@ li {
   border-radius: 20%;
   display: flex;
   position: fixed;
-  bottom: 85px;
-  right: 15px;
+  bottom: 30px;
+  right: 20px;
 }
 .open-modal-btn {
   width: 80%;
