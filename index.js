@@ -221,7 +221,7 @@ function appendItemToCompletedUlList(item) {
 
 //Clear input field
 function clearInputField() {
-  inputField.value = "";
+  // inputField.value = "";
   inputFieldModal.value = "";
 }
 //Clear UL list element
@@ -231,13 +231,14 @@ function clearItemUlList() {
 function clearCompletedItemUlList() {
   completedItemUlList.innerHTML = "";
 }
+//Trim and lower user inputs
 function trimAndLowerCase(input) {
   input = input.trim();
   input = input.toLowerCase();
   return input;
 }
+//Modal input checks
 function inputModalChecks() {
-  //Modal input checks
   if (!inputFieldModal.value) {
     addBtn.style.backgroundColor = "#d2d2cf";
     addBtn.disabled = true;
