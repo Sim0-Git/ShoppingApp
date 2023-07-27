@@ -21,18 +21,19 @@ const database = getDatabase(app);
 const itemsInDB = ref(database, "itemsList");
 const completedItemDB = ref(database, "completedItemsList");
 
-//reference elements and variables
+//Reference elements and variables
 const addItemBtn = document.getElementById("add-button");
-const addItemDiv = document.getElementById("fixed-container");
-const addItemForm = document.getElementById("add-item-form");
-const addItemWithModalBtn = document.getElementById("fixed-btn");
-//Buttons inside modal
-const addBtn = document.getElementById("add-btn");
-const doneBtn = document.getElementById("done-btn");
+const addItemDiv = document.getElementById("open-modal-btn-container");
 const inputField = document.getElementById("input-field");
 const itemUlList = document.getElementById("item-list");
 const completedItemUlList = document.getElementById("completed-item-list");
+//Modal
+const form = document.getElementById("form");
+const openModalBtn = document.getElementById("open-modal-btn");
+const addBtn = document.getElementById("add-btn");
+const doneBtn = document.getElementById("done-btn");
 const modalEl = document.getElementById("modal");
+//Arrays
 let itemArray = [];
 let completedItemArray = [];
 
@@ -92,17 +93,23 @@ addItemBtn.addEventListener("click", function () {
 });
 
 //Add items by opening a modal
-addItemForm.addEventListener("submit", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 });
-addItemWithModalBtn.addEventListener("click", function () {
+openModalBtn.addEventListener("click", function () {
   console.log("Modal open");
-  modalEl.style.display = "inline";
+  modalEl.style.display = "flex";
   addItemDiv.style.display = "none";
 });
 doneBtn.addEventListener("click", function () {
   modalEl.style.display = "none";
   addItemDiv.style.display = "flex";
+});
+addBtn.addEventListener("click", function () {
+  modalEl.innerHTML += `<h2>item added</h2>`;
+  setTimeout(function () {
+    modalEl.innerHTML - `<h2>item added</h2>`;
+  }, 1000);
 });
 
 //Add items to Ul list

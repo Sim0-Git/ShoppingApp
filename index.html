@@ -40,6 +40,7 @@
         <input
           type="text"
           name=""
+          class="input-field"
           id="input-field"
           placeholder="Enter item"
           maxlength="18"
@@ -54,11 +55,12 @@
       <button id="add-button">Add to Cart</button>
     </div>
     <div class="modal" id="modal">
-      <p>Add item to the list</p>
-      <div class="modal-btn" id="modal-btn">
-        <form id="add-item-form">
+      <!-- <div class="modal-btn" id="modal-btn"> -->
+      <form id="form" class="form">
+        <div class="input-container">
           <input
             type="text"
+            class="input-field name"
             id="modal-input-field"
             name="itemName"
             placeholder="Add new item"
@@ -67,22 +69,24 @@
           />
           <input
             type="number"
+            class="input-field num"
             id="modal-input-field"
             name="quantityName"
-            placeholder="Quantity"
-            maxlength="18"
+            placeholder="0"
+            min="0"
+            max="10"
             required
           />
-          <div>
-            <button type="submit" class="btn" id="add-btn">Add</button>
-            <button class="btn" id="cancel-btn">Cancel</button>
-            <button class="btn" id="done-btn">Done</button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="btn-container">
+          <button type="submit" class="btn" id="add-btn">Add</button>
+          <button class="btn" id="done-btn">Done</button>
+        </div>
+      </form>
+      <!-- </div> -->
     </div>
-    <div class="fixed-container" id="fixed-container">
-      <button class="fixed-btn" id="fixed-btn">+</button>
+    <div class="open-modal-btn-container" id="open-modal-btn-container">
+      <button class="open-modal-btn" id="open-modal-btn">+</button>
     </div>
 
     <script src="index.js" type="module"></script>

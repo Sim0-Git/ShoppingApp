@@ -15,23 +15,7 @@ img {
   margin-inline: auto;
   margin-top: 30px;
 }
-.fixed-container {
-  width: 40px;
-  height: 40px;
-  box-shadow: 1px 1px 5px #999;
-  border-radius: 20%;
-  display: flex;
-  position: fixed;
-  bottom: 85px;
-  right: 15px;
-}
-.fixed-btn {
-  width: 80%;
-  height: 80%;
-  margin: auto;
-  border-style: none;
-  border-radius: 20%;
-}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -40,7 +24,7 @@ img {
   margin: 0 auto;
   margin-bottom: 30px;
 }
-/* USER INPUT */
+/* USER INPUTS */
 #add-section {
   display: flex;
   flex-direction: column;
@@ -49,8 +33,7 @@ img {
   margin-bottom: 30px;
   width: 90%;
 }
-#input-field,
-#modal-input-field {
+.input-field {
   color: rgb(94, 93, 93);
   background-color: #fdfdfd;
   padding: 10px;
@@ -61,7 +44,7 @@ img {
   font-size: 20px;
   font-weight: bold;
   font-family: "Rubik", sans-serif;
-  width: 80%;
+  /* width: 80%; */
   top: 20px;
 }
 
@@ -181,6 +164,23 @@ li {
 }
 
 /* MODAL */
+.open-modal-btn-container {
+  width: 40px;
+  height: 40px;
+  box-shadow: 1px 1px 5px #999;
+  border-radius: 20%;
+  display: flex;
+  position: fixed;
+  bottom: 85px;
+  right: 15px;
+}
+.open-modal-btn {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  border-style: none;
+  border-radius: 20%;
+}
 .modal {
   position: fixed;
   bottom: 0;
@@ -188,19 +188,56 @@ li {
   left: 0;
   right: 0;
   margin: auto;
-  height: 90%;
-  width: 90%;
+  height: 95%;
+  min-height: 250px;
+  width: 320px;
   border-radius: 4px;
-  background-color: #bde0fe;
-  box-shadow: 0px 0px 6px 1px #666;
+  background-color: #ffef9f;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   color: rgb(94, 93, 93);
   font-size: 20px;
   font-weight: bold;
   display: none;
-}
-.modal p {
+  flex-direction: column;
   text-align: center;
+}
+.form {
+  height: 100%;
+  position: relative;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.btn-container {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  left: 0;
+  margin: auto;
 }
 .modal-btn {
   text-align: center;
+}
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border-style: none;
+  margin-top: 20px;
+  margin-inline: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #ff9770;
+  color: #fdfdfd;
+}
+.name {
+  width: 60%;
+  margin-bottom: 10px;
+  border: 3px solid #ff9770;
+}
+.num {
+  width: 20%;
+  /* border-style: none; */
 }
