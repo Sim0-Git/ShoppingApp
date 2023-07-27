@@ -165,8 +165,8 @@ li {
 
 /* MODAL */
 .open-modal-btn-container {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 20%;
   display: flex;
@@ -181,7 +181,7 @@ li {
   border-style: none;
   border-radius: 20%;
   background-color: #ff9770;
-  font-weight: 600;
+  font-weight: 500;
   font-size: larger;
   color: whitesmoke;
 }
@@ -194,7 +194,7 @@ li {
   margin: auto;
   height: 95%;
   min-height: 250px;
-  width: 300px;
+  width: 310px;
   border-radius: 4px;
   background-color: #ffef9f;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
@@ -217,20 +217,23 @@ li {
 }
 .btn-container {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   right: 0;
   left: 0;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
-.modal-btn {
+/* .modal-btn {
   text-align: center;
-}
+} */
 .btn {
   padding: 10px 20px;
   border-radius: 6px;
   border-style: none;
-  margin-top: 20px;
-  margin-inline: 20px;
+  /* margin-top: 20px; */
+  /* margin-inline: 20px; */
   font-size: 20px;
   font-weight: 500;
   background-color: #ff9770;
