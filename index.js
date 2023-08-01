@@ -41,11 +41,8 @@ const quantityFieldModal = document.getElementById("modal-quantity-field");
 let itemArray = [];
 let completedItemArray = [];
 
-// item added popup HTML element
+// item added popup icon HTML element
 let itemAddedPTag = document.createElement("div");
-itemAddedPTag.textContent = "Added";
-itemAddedPTag.className = "itemPTag";
-itemAddedPTag.style.marginTop = "20px";
 inputContainer.append(itemAddedPTag);
 
 //Fetching items from the database, runs every time there is edit to the database
@@ -111,10 +108,10 @@ addBtn.addEventListener("click", function () {
     !completedItemArray.includes(inputValue) &&
     !inputFieldModal.value == ""
   ) {
-    itemAddedPTag.className = "itemPTagAdded";
+    itemAddedPTag.classList = "itemPTagAdded";
     setTimeout(function () {
       itemAddedPTag.className = "itemPTag";
-    }, 500);
+    }, 700);
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();
