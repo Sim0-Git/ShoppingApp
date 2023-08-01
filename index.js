@@ -41,6 +41,7 @@ let completedItemArray = [];
 
 //Fetching items from the database, runs every time there is edit to the database
 onValue(itemsInDB, function (snapshot) {
+  itemArray = [];
   //Check if the item list is empty
   if (snapshot.exists()) {
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
@@ -53,9 +54,11 @@ onValue(itemsInDB, function (snapshot) {
   } else {
     itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your list</h3>`;
   }
+  console.log(itemArray);
 });
 
 onValue(completedItemDB, function (snapshot) {
+  completedItemArray = [];
   //Check if the item list is empty
   if (snapshot.exists()) {
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
@@ -70,6 +73,7 @@ onValue(completedItemDB, function (snapshot) {
     completedItemUlList.innerHTML = "<span></span>";
     // return;
   }
+  console.log(completedItemArray);
 });
 
 //Add items to the Ul list and the database
@@ -94,6 +98,7 @@ onValue(completedItemDB, function (snapshot) {
 //   }
 // });
 addBtn.addEventListener("click", function () {
+  console.log(itemArray);
   let inputValue = trimAndLowerCase(inputFieldModal.value);
   if (
     !itemArray.includes(inputValue) &&
@@ -156,15 +161,11 @@ function appendItemToUlList(item) {
 
   //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
-    console.log("Enter checkbox listener in itemList");
     let itemLocationInDB = ref(database, `itemsList/${itemID}`);
     if (checkBox.checked) {
       completedItemUlList.append(newItem);
-      console.log(newItem.textContent + " appended to completedItemUlList");
       push(completedItemDB, itemValue);
-      console.log(newItem.textContent + " pushed in completedItemDB");
       remove(itemLocationInDB);
-      console.log("remove " + newItem.textContent + " from itemsInDB");
     }
   });
 
@@ -201,16 +202,11 @@ function appendItemToCompletedUlList(item) {
 
   //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
-    console.log("Enter checkbox listener in completedItemList");
     let itemLocationInDB = ref(database, `completedItemsList/${itemID}`);
     if (!checkBox.checked) {
-      console.log(newItem.textContent + " item had ben unchecked");
       itemUlList.append(newItem);
-      console.log(newItem.textContent + " appended to itemUlList");
       remove(itemLocationInDB);
-      console.log("remove " + newItem.textContent + " from completedItemDB");
       push(itemsInDB, itemValue);
-      console.log(newItem.textContent + " pushed in itemsInDB");
     }
   });
 
