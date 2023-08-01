@@ -33,11 +33,20 @@ const openModalBtn = document.getElementById("open-modal-btn");
 const addBtn = document.getElementById("add-btn");
 const doneBtn = document.getElementById("done-btn");
 const modalEl = document.getElementById("modal");
+const inputContainer = document.getElementById("input-container");
 const inputFieldModal = document.getElementById("modal-input-field");
 const quantityFieldModal = document.getElementById("modal-quantity-field");
+
 //Arrays
 let itemArray = [];
 let completedItemArray = [];
+
+// item added popup HTML element
+let itemAddedPTag = document.createElement("div");
+itemAddedPTag.textContent = "Added";
+itemAddedPTag.className = "itemPTag";
+itemAddedPTag.style.marginTop = "20px";
+inputContainer.append(itemAddedPTag);
 
 //Fetching items from the database, runs every time there is edit to the database
 onValue(itemsInDB, function (snapshot) {
@@ -52,9 +61,9 @@ onValue(itemsInDB, function (snapshot) {
       appendItemToUlList(currentItem);
     });
   } else {
-    itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your list</h3>`;
+    itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your cart</h3>`;
+    console.log("I m here");
   }
-  console.log(itemArray);
 });
 
 onValue(completedItemDB, function (snapshot) {
@@ -69,11 +78,9 @@ onValue(completedItemDB, function (snapshot) {
       appendItemToCompletedUlList(currentItem);
     });
   } else {
-    // completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in the list</h3>`;
-    completedItemUlList.innerHTML = "<span></span>";
-    // return;
+    // completedItemUlList.innerHTML = "<span></span>";
+    completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in this cart</h3>`;
   }
-  console.log(completedItemArray);
 });
 
 //Add items to the Ul list and the database
@@ -98,13 +105,16 @@ onValue(completedItemDB, function (snapshot) {
 //   }
 // });
 addBtn.addEventListener("click", function () {
-  console.log(itemArray);
   let inputValue = trimAndLowerCase(inputFieldModal.value);
   if (
     !itemArray.includes(inputValue) &&
     !completedItemArray.includes(inputValue) &&
     !inputFieldModal.value == ""
   ) {
+    itemAddedPTag.className = "itemPTagAdded";
+    setTimeout(function () {
+      itemAddedPTag.className = "itemPTag";
+    }, 500);
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();
@@ -162,6 +172,7 @@ function appendItemToUlList(item) {
   //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
     let itemLocationInDB = ref(database, `itemsList/${itemID}`);
+    console.log(itemID);
     if (checkBox.checked) {
       completedItemUlList.append(newItem);
       push(completedItemDB, itemValue);

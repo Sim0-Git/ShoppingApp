@@ -78,7 +78,7 @@ img {
   background-color: #fffffc;
   border-radius: 8px;
   margin-bottom: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
   padding-inline: 12px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -252,6 +252,18 @@ li {
 }
 .add {
   background-color: #d2d2cf;
+}
+.itemPTag {
+  color: #d2d2cf;
+  background-color: #f5f5f2;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+.itemPTagAdded {
+  color: white;
+  background-color: #ff9770;
+  padding: 10px 12px;
+  border-radius: 6px;
 }
 .name {
   width: 80%;
