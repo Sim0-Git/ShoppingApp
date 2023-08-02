@@ -22,11 +22,12 @@ const itemsInDB = ref(database, "itemsList");
 const completedItemDB = ref(database, "completedItemsList");
 
 //Reference elements and variables
-const addItemBtn = document.getElementById("add-button");
+// const addItemBtn = document.getElementById("add-button");
+// const inputField = document.getElementById("input-field");
 const addItemDiv = document.getElementById("open-modal-btn-container");
-const inputField = document.getElementById("input-field");
 const itemUlList = document.getElementById("item-list");
 const completedItemUlList = document.getElementById("completed-item-list");
+
 //Modal
 const form = document.getElementById("form");
 const openModalBtn = document.getElementById("open-modal-btn");
@@ -35,7 +36,7 @@ const doneBtn = document.getElementById("done-btn");
 const modalEl = document.getElementById("modal");
 const inputContainer = document.getElementById("input-container");
 const inputFieldModal = document.getElementById("modal-input-field");
-const quantityFieldModal = document.getElementById("modal-quantity-field");
+// const quantityFieldModal = document.getElementById("modal-quantity-field");
 
 //Arrays
 let itemArray = [];
@@ -43,9 +44,8 @@ let completedItemArray = [];
 
 // item added popup icon HTML element
 let itemAddedPTag = document.createElement("div");
-inputContainer.append(itemAddedPTag);
-
-addBtn.style.display = "none";
+itemAddedPTag.textContent = "Added";
+// inputContainer.append(itemAddedPTag);
 
 //Fetching items from the database, runs every time there is edit to the database
 onValue(itemsInDB, function (snapshot) {
@@ -61,7 +61,6 @@ onValue(itemsInDB, function (snapshot) {
     });
   } else {
     itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your cart</h3>`;
-    console.log("I m here");
   }
 });
 
@@ -78,31 +77,10 @@ onValue(completedItemDB, function (snapshot) {
     });
   } else {
     // completedItemUlList.innerHTML = "<span></span>";
-    completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items in this cart</h3>`;
+    completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items</h3>`;
   }
 });
 
-//Add items to the Ul list and the database
-// addItemBtn.addEventListener("click", function () {
-//   let inputValue = trimAndLowerCase(inputField.value);
-//   console.log(inputValue);
-//   console.log(itemArray);
-//   console.log(completedItemArray);
-//   if (
-//     !itemArray.includes(inputValue) &&
-//     !completedItemArray.includes(inputValue) &&
-//     !inputField.value == ""
-//   ) {
-//     console.log(`${inputValue} added`);
-//     push(itemsInDB, inputValue);
-//     clearInputField();
-//   } else {
-//     inputField.value = "Already in the list!";
-//     setTimeout(function () {
-//       inputField.value = "";
-//     }, 1500);
-//   }
-// });
 addBtn.addEventListener("click", function () {
   let inputValue = trimAndLowerCase(inputFieldModal.value);
   if (
@@ -113,7 +91,8 @@ addBtn.addEventListener("click", function () {
     itemAddedPTag.classList = "itemPTagAdded";
     setTimeout(function () {
       itemAddedPTag.className = "itemPTag";
-    }, 700);
+    }, 1000);
+    inputContainer.append(itemAddedPTag);
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();
@@ -145,9 +124,9 @@ doneBtn.addEventListener("click", function () {
   // quantityFieldModal.value = "0";
 });
 
+let itemsHTML = ``;
 //Add items to Ul list
 function appendItemToUlList(item) {
-  // itemUlList.innerHTML += `<li>${itemValue}</li>`;
   let newItem = document.createElement("li"); // Create li element
   let deleteBtn = document.createElement("button");
   let checkBox = document.createElement("input");
@@ -158,15 +137,24 @@ function appendItemToUlList(item) {
   newItem.textContent = itemValue; //Assign to the li element the item value
 
   // //Append checkbox and delete button to the div and the div to the li element
-  deleteBtn.id = "deleteItemBtn";
+  deleteBtn.classList = "deleteItemBtn";
   checkBox.type = "checkBox";
-  checkBox.id = "check-box-el";
-  liDiv.id = "li-div";
+  checkBox.classList = "check-box-el";
+  liDiv.classList = "li-div";
 
   liDiv.append(checkBox);
   liDiv.append(newItem);
   liDiv.append(deleteBtn);
   itemUlList.append(liDiv);
+
+  // itemsHTML += `
+  // <li class="li-new">
+  //   <input type="checkBox" id="${item[0]}" class="check-box-el"/>
+  //   <label>${item[1]}</label>
+  //   <button id="${item[0]}" class="deleteItemBtn"></button>
+  // </li>`;
+
+  // itemUlList.innerHTML = itemsHTML;
 
   //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
@@ -185,6 +173,11 @@ function appendItemToUlList(item) {
     remove(itemLocationInDB); //remove exact item by ID
   });
 }
+
+itemUlList.addEventListener("click", function (e) {
+  // console.log(document.getElementById(e.target.id).parentElement);
+});
+
 //Add items to completed Ul list
 function appendItemToCompletedUlList(item) {
   // itemUlList.innerHTML += `<li>${itemValue}</li>`;
@@ -199,9 +192,9 @@ function appendItemToCompletedUlList(item) {
   newItem.textContent = itemValue; //Assign to the li element the item value
 
   //Append checkbox and delete button to the div and the div to the li element
-  deleteBtn.id = "deleteItemBtn";
+  deleteBtn.classList = "deleteItemBtn";
   checkBox.type = "checkBox";
-  checkBox.id = "check-box-el";
+  checkBox.classList = "check-box-el";
   checkBox.checked = true;
   liDiv.id = "li-div-completed";
 
