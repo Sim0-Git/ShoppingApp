@@ -45,6 +45,8 @@ let completedItemArray = [];
 let itemAddedPTag = document.createElement("div");
 inputContainer.append(itemAddedPTag);
 
+addBtn.style.display = "none";
+
 //Fetching items from the database, runs every time there is edit to the database
 onValue(itemsInDB, function (snapshot) {
   itemArray = [];
@@ -101,30 +103,30 @@ onValue(completedItemDB, function (snapshot) {
 //     }, 1500);
 //   }
 // });
-// addBtn.addEventListener("click", function () {
-//   let inputValue = trimAndLowerCase(inputFieldModal.value);
-//   if (
-//     !itemArray.includes(inputValue) &&
-//     !completedItemArray.includes(inputValue) &&
-//     !inputFieldModal.value == ""
-//   ) {
-//     itemAddedPTag.classList = "itemPTagAdded";
-//     setTimeout(function () {
-//       itemAddedPTag.className = "itemPTag";
-//     }, 700);
-//     console.log(`${inputValue} added`);
-//     push(itemsInDB, inputValue);
-//     clearInputField();
-//   } else {
-//     inputFieldModal.value = "Already in the list!";
-//     setTimeout(function () {
-//       inputFieldModal.value = "";
-//       // quantityFieldModal.value = "";
-//     }, 1500);
-//   }
-//   inputModalChecks();
-//   inputFieldModal.focus();
-// });
+addBtn.addEventListener("click", function () {
+  let inputValue = trimAndLowerCase(inputFieldModal.value);
+  if (
+    !itemArray.includes(inputValue) &&
+    !completedItemArray.includes(inputValue) &&
+    !inputFieldModal.value == ""
+  ) {
+    itemAddedPTag.classList = "itemPTagAdded";
+    setTimeout(function () {
+      itemAddedPTag.className = "itemPTag";
+    }, 700);
+    console.log(`${inputValue} added`);
+    push(itemsInDB, inputValue);
+    clearInputField();
+  } else {
+    inputFieldModal.value = "Already in the list!";
+    setTimeout(function () {
+      inputFieldModal.value = "";
+      // quantityFieldModal.value = "";
+    }, 1500);
+  }
+  inputModalChecks();
+  inputFieldModal.focus();
+});
 
 //Add items by opening a modal
 form.addEventListener("submit", function (e) {
