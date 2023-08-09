@@ -43,8 +43,8 @@ let itemArray = [];
 let completedItemArray = [];
 
 // item added popup icon HTML element
-let itemAddedPTag = document.createElement("div");
-itemAddedPTag.textContent = "Added";
+// let itemAddedPTag = document.createElement("div");
+// itemAddedPTag.textContent = "Added";
 // inputContainer.append(itemAddedPTag);
 
 //Fetching items from the database, runs every time there is edit to the database
@@ -89,11 +89,13 @@ addBtn.addEventListener("click", function () {
     !completedItemArray.includes(inputValue) &&
     !inputFieldModal.value == ""
   ) {
-    itemAddedPTag.classList = "itemPTagAdded";
+    // itemAddedPTag.classList = "itemPTagAdded";
+    inputFieldModal.style.border = "5px solid #7bf1a8";
     setTimeout(function () {
-      itemAddedPTag.classList = "itemPTag";
-    }, 800);
-    inputContainer.append(itemAddedPTag);
+      // itemAddedPTag.classList = "itemPTag";
+      inputFieldModal.style.border = "3px solid #ff9770";
+    }, 600);
+    // inputContainer.append(itemAddedPTag);
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();

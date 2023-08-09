@@ -194,7 +194,7 @@ i {
   width: 60px;
   height: 60px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  background-color: rgba(245, 245, 245, 0.566);
+  background-color: #fffffcc3;
   border-radius: 8px;
   display: flex;
   position: fixed;
@@ -208,7 +208,7 @@ i {
   border-style: none;
   /* border-radius: 8px; */
   /* background-color: #ff9770; */
-  background-color: rgba(245, 245, 245, 0.566);
+  background-color: #fffffcc3;
   /* font-weight: bold; */
   font-size: larger;
   /* color: whitesmoke; */
@@ -287,6 +287,9 @@ i {
 .name {
   width: 70%;
   border: 3px solid #ff9770;
+}
+.added {
+  border: 3px solid #7bf1a8;
 }
 .num {
   width: 20%;
