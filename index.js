@@ -77,7 +77,7 @@ onValue(completedItemDB, function (snapshot) {
       appendItemToCompletedUlList(currentItem);
     });
   } else {
-    completedItemUlList.innerHTML = `<h3 id="no-item-msg"></h3>`;
+    completedItemUlList.innerHTML = ``;
   }
 });
 
@@ -91,8 +91,8 @@ addBtn.addEventListener("click", function () {
   ) {
     itemAddedPTag.classList = "itemPTagAdded";
     setTimeout(function () {
-      itemAddedPTag.className = "itemPTag";
-    }, 1000);
+      itemAddedPTag.classList = "itemPTag";
+    }, 800);
     inputContainer.append(itemAddedPTag);
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
@@ -105,7 +105,7 @@ addBtn.addEventListener("click", function () {
       inputFieldModal.value = "";
       // quantityFieldModal.value = "";
       inputModalChecks();
-    }, 1500);
+    }, 1100);
   }
   inputModalChecks();
   inputFieldModal.focus();

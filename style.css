@@ -187,13 +187,14 @@ i {
 #no-item-msg {
   color: rgb(94, 93, 93);
   align-self: center;
-  height: 30px;
+  /* height: 30px; */
 }
 /* MODAL */
 .open-modal-btn-container {
-  width: 90px;
-  height: 45px;
+  width: 55px;
+  height: 50px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  background-color: rgba(245, 245, 245, 0.566);
   border-radius: 8px;
   display: flex;
   position: fixed;
@@ -201,19 +202,23 @@ i {
   right: 20px;
 }
 .open-modal-btn {
-  width: 90%;
-  height: 80%;
+  /* width: 90%; */
+  /* height: 80%; */
   margin: auto;
   border-style: none;
-  border-radius: 8px;
-  background-color: #ff9770;
-  font-weight: bold;
+  /* border-radius: 8px; */
+  /* background-color: #ff9770; */
+  background-color: rgba(245, 245, 245, 0.566);
+  /* font-weight: bold; */
   font-size: larger;
-  color: whitesmoke;
+  /* color: whitesmoke; */
 }
 .open-modal-btn:hover {
   color: whitesmoke;
-  background-color: #fc6b37;
+  /* background-color: #fc6b37; */
+}
+.fa-cart-plus {
+  color: #fcc048;
 }
 .modal {
   position: fixed;
