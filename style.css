@@ -215,6 +215,7 @@ i {
 }
 .fa-cart-plus {
   color: #fcc048;
+  margin-top: 15px;
 }
 .modal {
   position: fixed;
