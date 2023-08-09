@@ -55,12 +55,13 @@ onValue(itemsInDB, function (snapshot) {
     // values retrieve just the values of the itemsArray, keys retrieve just the id , and entries retrieve both
     let itemsArray = Object.entries(snapshot.val());
     clearItemUlList();
-    itemsArray.forEach((currentItem) => {
+    itemsArray.forEach((currentItem, index) => {
+      console.log(index, currentItem[1]); //Could be useful
       itemArray.push(currentItem[1]);
       appendItemToUlList(currentItem);
     });
   } else {
-    itemUlList.innerHTML = `<h3 id="no-item-msg">Add more items to your cart</h3>`;
+    itemUlList.innerHTML = `<h3 id="no-item-msg">The cart is empty</h3>`;
   }
 });
 
@@ -76,12 +77,12 @@ onValue(completedItemDB, function (snapshot) {
       appendItemToCompletedUlList(currentItem);
     });
   } else {
-    // completedItemUlList.innerHTML = "<span></span>";
-    completedItemUlList.innerHTML = `<h3 id="no-item-msg">No items</h3>`;
+    completedItemUlList.innerHTML = `<h3 id="no-item-msg"></h3>`;
   }
 });
 
 addBtn.addEventListener("click", function () {
+  console.log(inputFieldModal.value);
   let inputValue = trimAndLowerCase(inputFieldModal.value);
   if (
     !itemArray.includes(inputValue) &&
@@ -96,11 +97,14 @@ addBtn.addEventListener("click", function () {
     console.log(`${inputValue} added`);
     push(itemsInDB, inputValue);
     clearInputField();
+  } else if (inputFieldModal.value == "") {
+    inputModalChecks();
   } else {
     inputFieldModal.value = "Already in the list!";
     setTimeout(function () {
       inputFieldModal.value = "";
       // quantityFieldModal.value = "";
+      inputModalChecks();
     }, 1500);
   }
   inputModalChecks();
@@ -124,7 +128,7 @@ doneBtn.addEventListener("click", function () {
   // quantityFieldModal.value = "0";
 });
 
-let itemsHTML = ``;
+// let itemsHTML = ``;
 //Add items to Ul list
 function appendItemToUlList(item) {
   let newItem = document.createElement("li"); // Create li element
@@ -136,9 +140,11 @@ function appendItemToUlList(item) {
 
   newItem.textContent = itemValue; //Assign to the li element the item value
 
-  // //Append checkbox and delete button to the div and the div to the li element
+  //Append checkbox and delete button to the div and the div to the li element
   deleteBtn.classList = "deleteItemBtn";
-  checkBox.type = "checkBox";
+  deleteBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+  checkBox.type = "checkbox";
+  checkBox.value = itemValue; //could be useful, if the item is clicked the checkbox activates
   checkBox.classList = "check-box-el";
   liDiv.classList = "li-div";
 
@@ -149,17 +155,16 @@ function appendItemToUlList(item) {
 
   // itemsHTML += `
   // <li class="li-new">
-  //   <input type="checkBox" id="${item[0]}" class="check-box-el"/>
-  //   <label>${item[1]}</label>
+  //   <input type="checkbox" id="${item[0]}" class="check-box-el" value="${item[1]}"/>
+  //   <label id="${item[0]}" class="item-label">${item[1]}</label>
   //   <button id="${item[0]}" class="deleteItemBtn"></button>
   // </li>`;
-
   // itemUlList.innerHTML = itemsHTML;
 
-  //if checked move to the completed ul list items
+  // //if checked move to the completed ul list items
   checkBox.addEventListener("click", function () {
     let itemLocationInDB = ref(database, `itemsList/${itemID}`);
-    console.log(itemID);
+    // console.log(itemID);
     if (checkBox.checked) {
       completedItemUlList.append(newItem);
       push(completedItemDB, itemValue);
@@ -173,10 +178,6 @@ function appendItemToUlList(item) {
     remove(itemLocationInDB); //remove exact item by ID
   });
 }
-
-itemUlList.addEventListener("click", function (e) {
-  // console.log(document.getElementById(e.target.id).parentElement);
-});
 
 //Add items to completed Ul list
 function appendItemToCompletedUlList(item) {
@@ -193,6 +194,7 @@ function appendItemToCompletedUlList(item) {
 
   //Append checkbox and delete button to the div and the div to the li element
   deleteBtn.classList = "deleteItemBtn";
+  deleteBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
   checkBox.type = "checkBox";
   checkBox.classList = "check-box-el";
   checkBox.checked = true;
@@ -240,7 +242,7 @@ function trimAndLowerCase(input) {
 }
 //Modal input checks
 function inputModalChecks() {
-  if (!inputFieldModal.value) {
+  if (!inputFieldModal.value || inputFieldModal == "") {
     addBtn.style.backgroundColor = "#d2d2cf";
     addBtn.disabled = true;
   }

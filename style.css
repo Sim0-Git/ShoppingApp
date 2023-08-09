@@ -11,7 +11,7 @@ body {
   align-items: center;
 }
 img {
-  width: 100px;
+  width: 80px;
   margin-inline: auto;
   margin-top: 30px;
 }
@@ -44,7 +44,6 @@ img {
   font-size: 20px;
   font-weight: bold;
   font-family: "Rubik", sans-serif;
-  /* width: 80%; */
   top: 20px;
 }
 
@@ -116,10 +115,10 @@ li {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   margin-block: 2px;
 }
-#li-div:hover {
+.li-div:hover {
   box-shadow: 0px 1px 5px #ff9770;
 }
-.li-new {
+/* .li-new {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,6 +128,14 @@ li {
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   margin-block: 2px;
+} */
+.item-label {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Rubik", sans-serif;
+  color: rgb(94, 93, 93);
+  list-style: none;
+  width: 70%;
 }
 #li-div-completed {
   display: flex;
@@ -151,16 +158,18 @@ li {
   max-width: 90%;
 }
 .deleteItemBtn {
-  background: url("/assets/delete.png");
-  background-size: cover;
-  width: 25px;
-  height: 25px;
   box-shadow: none;
   border-radius: 0px;
   border-style: none;
+  background: none;
+  padding: 0;
 }
 .deleteItemBtn:hover {
   cursor: pointer;
+}
+i {
+  color: #f08080;
+  font-size: 18px;
 }
 /* CHECKBOX */
 .check-box-el {
@@ -178,8 +187,8 @@ li {
 #no-item-msg {
   color: rgb(94, 93, 93);
   align-self: center;
+  height: 30px;
 }
-
 /* MODAL */
 .open-modal-btn-container {
   width: 90px;
