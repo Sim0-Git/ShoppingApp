@@ -191,8 +191,8 @@ i {
 }
 /* MODAL */
 .open-modal-btn-container {
-  width: 55px;
-  height: 50px;
+  width: 60px;
+  height: 55px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   background-color: rgba(245, 245, 245, 0.566);
   border-radius: 8px;
@@ -212,10 +212,6 @@ i {
   /* font-weight: bold; */
   font-size: larger;
   /* color: whitesmoke; */
-}
-.open-modal-btn:hover {
-  color: whitesmoke;
-  /* background-color: #fc6b37; */
 }
 .fa-cart-plus {
   color: #fcc048;

@@ -105,7 +105,7 @@ addBtn.addEventListener("click", function () {
       inputFieldModal.value = "";
       // quantityFieldModal.value = "";
       inputModalChecks();
-    }, 1100);
+    }, 1000);
   }
   inputModalChecks();
   inputFieldModal.focus();
